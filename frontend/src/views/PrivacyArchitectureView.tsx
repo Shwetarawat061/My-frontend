@@ -49,7 +49,7 @@ export const PrivacyArchitectureView: React.FC = () => {
                 0 Seconds of Raw Audio Stored by Default
               </h2>
               <p className="text-xs text-slate-400 mt-1 max-w-xl font-mono">
-                VoxShield AI operates strictly on ephemeral sliding-window buffers in RAM. Audio is converted to non-reversible mathematical frequency vectors and purged immediately after feature extraction (&lt;40ms).
+                VeriVox operates strictly on ephemeral sliding-window buffers in RAM. Audio is converted to non-reversible mathematical frequency vectors and purged immediately after feature extraction (&lt;40ms).
               </p>
             </div>
           </div>
