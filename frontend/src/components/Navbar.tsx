@@ -110,26 +110,24 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 id="header-btn-cmd-palette"
                 onClick={onOpenCommandPalette}
-                className="hidden lg:flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-[#0B1120] hover:bg-[#131B2E] border border-[rgba(148,163,184,0.15)] text-slate-300 hover:text-white transition-all text-xs font-mono group cursor-pointer"
+                className="hidden lg:flex items-center gap-2 px-2 py-1.5 rounded-lg bg-[#0B1120]/80 hover:bg-[#131B2E] border border-[rgba(148,163,184,0.12)] text-slate-300 hover:text-white transition-all text-xs font-mono group cursor-pointer"
                 title="Quick Access Command Palette (Press ⌘K or Ctrl+K)"
               >
-                <Search className="w-3.5 h-3.5 text-[#22D3EE] group-hover:scale-110 transition-transform" />
-                <span className="text-[11px] text-slate-400">Search</span>
-                <kbd className="px-1.5 py-0.5 rounded bg-[#05070B] border border-[rgba(148,163,184,0.2)] text-[10px] font-bold text-slate-300">
+                <Search className="w-3.5 h-3.5 text-[#22D3EE]/80 group-hover:scale-110 transition-transform" />
+                <span className="text-[10px] text-slate-400">Search</span>
+                <kbd className="px-1.5 py-0.5 rounded bg-[#05070B] border border-[rgba(148,163,184,0.2)] text-[9px] font-bold text-slate-300">
                   ⌘K
                 </kbd>
               </button>
             )}
 
             {/* Acoustic Defense Active Status Pill */}
-            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#061B1C] border border-[#10B981]/30">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]"></span>
+            <div className="hidden sm:flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#061B1C]/70 border border-[#10B981]/20 text-[10px] font-medium text-[#10B981]">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-60"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#10B981]"></span>
               </span>
-              <span className="text-[11px] font-medium text-[#10B981]">
-                Acoustic Defense Active
-              </span>
+              <span>Acoustic Defense Active</span>
             </div>
 
             {/* Context Switcher Button: Exit Workspace vs Open Workspace */}
@@ -137,7 +135,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 id="header-btn-exit-workspace"
                 onClick={() => onTabChange('landing')}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0B1120] text-slate-300 hover:text-white hover:bg-[#131B2E] border border-[rgba(148,163,184,0.15)] transition-all cursor-pointer"
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] font-medium bg-[#0B1120]/80 text-slate-300 hover:text-white hover:bg-[#131B2E] border border-[rgba(148,163,184,0.12)] transition-all cursor-pointer"
                 title="Return to Public Landing Page"
               >
                 <ArrowLeft className="w-3.5 h-3.5 text-slate-400" />
@@ -147,7 +145,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 id="header-btn-open-workspace"
                 onClick={() => onTabChange('dashboard')}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0B1120] text-slate-300 hover:text-white hover:bg-[#131B2E] border border-[rgba(148,163,184,0.15)] transition-all cursor-pointer"
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] font-medium bg-[#0B1120]/80 text-slate-300 hover:text-white hover:bg-[#131B2E] border border-[rgba(148,163,184,0.12)] transition-all cursor-pointer"
                 title="Enter Cyber Defense Console"
               >
                 <LayoutDashboard className="w-3.5 h-3.5 text-[#22D3EE]" />

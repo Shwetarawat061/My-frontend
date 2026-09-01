@@ -15,7 +15,7 @@ export const RiskGauge: React.FC<RiskGaugeProps> = ({
   showIcon = true,
 }) => {
   const normalizedScore = Math.min(Math.max(score, 0), 100);
-  
+
   // Angle for needle: -90deg (0%) to +90deg (100%)
   const needleAngle = -90 + (normalizedScore / 100) * 180;
 
@@ -25,6 +25,8 @@ export const RiskGauge: React.FC<RiskGaugeProps> = ({
   let glowFilter = 'drop-shadow(0 0 12px rgba(16, 185, 129, 0.4))';
   let badgeClasses = 'bg-[#10B981]/15 text-[#10B981] border-[#10B981]/30';
   let Icon = ShieldCheck;
+  let reason = 'Voiceprint and acoustic biomarkers align with enrolled identity';
+  let action = 'Allow verified call flow';
 
   if (normalizedScore >= 66) {
     tier = 'CRITICAL';
@@ -32,12 +34,16 @@ export const RiskGauge: React.FC<RiskGaugeProps> = ({
     glowFilter = 'drop-shadow(0 0 16px rgba(239, 68, 68, 0.6))';
     badgeClasses = 'bg-[#EF4444]/20 text-[#EF4444] border-[#EF4444]/40 animate-pulse';
     Icon = ShieldAlert;
+    reason = 'Synthetic clone signature detected';
+    action = 'Quarantine and escalate verification';
   } else if (normalizedScore >= 31) {
     tier = 'ELEVATED';
     activeColor = '#F59E0B';
     glowFilter = 'drop-shadow(0 0 14px rgba(245, 158, 11, 0.45))';
     badgeClasses = 'bg-[#F59E0B]/15 text-[#F59E0B] border-[#F59E0B]/30';
     Icon = AlertTriangle;
+    reason = 'Acoustic anomaly or mismatch detected';
+    action = 'Escalate for analyst review';
   }
 
   return (
@@ -156,12 +162,27 @@ export const RiskGauge: React.FC<RiskGaugeProps> = ({
       </div>
 
       {/* Status verdict pill */}
-      <div className="mt-4 flex items-center justify-center">
+      <div className="mt-4 flex flex-col items-center justify-center gap-2">
         <div
           className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold font-mono tracking-wide border transition-all duration-300 ${badgeClasses}`}
         >
           {showIcon && <Icon className="w-3.5 h-3.5 flex-shrink-0" />}
           <span>{status}</span>
+        </div>
+
+        <div className="grid grid-cols-3 gap-2 w-full max-w-[360px] text-[10px] text-slate-300">
+          <div className="rounded-lg border border-[rgba(148,163,184,0.12)] bg-[#040811] px-2 py-1.5 text-center">
+            <div className="text-slate-400 uppercase tracking-[0.12em]">Risk</div>
+            <div className="mt-1 font-bold text-white font-mono text-sm tabular-nums">{Math.round(normalizedScore)}</div>
+          </div>
+          <div className="rounded-lg border border-[rgba(148,163,184,0.12)] bg-[#040811] px-2 py-1.5 text-center">
+            <div className="text-slate-400 uppercase tracking-[0.12em]">Reason</div>
+            <div className="mt-1 font-bold text-white text-[10px] leading-tight">{tier === 'CRITICAL' ? 'Synthetic Clone' : tier === 'ELEVATED' ? 'Anomaly' : 'Verified'}</div>
+          </div>
+          <div className="rounded-lg border border-[rgba(148,163,184,0.12)] bg-[#040811] px-2 py-1.5 text-center">
+            <div className="text-slate-400 uppercase tracking-[0.12em]">Action</div>
+            <div className="mt-1 font-bold text-white text-[10px] leading-tight">{tier === 'CRITICAL' ? 'Quarantine' : tier === 'ELEVATED' ? 'Review' : 'Allow'}</div>
+          </div>
         </div>
       </div>
     </div>

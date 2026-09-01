@@ -401,13 +401,14 @@ export const VoiceAnalysisCoreView: React.FC<VoiceAnalysisCoreViewProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         {/* LEFT PANEL: Audio Input Tabs (Upload / Record / Presets) */}
-        <div className="lg:col-span-5 bg-[#070E1A] border border-[rgba(148,163,184,0.15)] rounded-2xl p-5 flex flex-col justify-between space-y-4 shadow-xl">
+            <div className="lg:col-span-5 bg-[#070E1A] border border-[rgba(148,163,184,0.15)] rounded-2xl p-5 flex flex-col justify-between space-y-3 shadow-xl min-h-[360px]">
           <div className="space-y-4">
             
             {/* Tab Navigation matching screenshot */}
             <div className="grid grid-cols-3 gap-2 bg-[#040811] p-1.5 rounded-xl border border-[rgba(148,163,184,0.1)]">
               <button
                 id="tab-btn-upload"
+                aria-pressed={inputTab === 'upload'}
                 onClick={() => setInputTab('upload')}
                 className={`flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   inputTab === 'upload'
@@ -421,6 +422,7 @@ export const VoiceAnalysisCoreView: React.FC<VoiceAnalysisCoreViewProps> = ({
 
               <button
                 id="tab-btn-record"
+                aria-pressed={inputTab === 'record'}
                 onClick={() => setInputTab('record')}
                 className={`flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   inputTab === 'record'
@@ -434,6 +436,7 @@ export const VoiceAnalysisCoreView: React.FC<VoiceAnalysisCoreViewProps> = ({
 
               <button
                 id="tab-btn-presets"
+                aria-pressed={inputTab === 'presets'}
                 onClick={() => setInputTab('presets')}
                 className={`flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   inputTab === 'presets'
@@ -566,14 +569,19 @@ export const VoiceAnalysisCoreView: React.FC<VoiceAnalysisCoreViewProps> = ({
                       : 'bg-[#040811] border-[rgba(148,163,184,0.15)] hover:border-slate-700'
                   }`}
                 >
-                  <div>
-                    <div className="flex items-center gap-2">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
                       <span className="text-xs font-bold text-white">Marathi Cloned Ransom Pretext</span>
-                      <span className="text-[9px] font-mono font-bold px-1.5 py-0.2 rounded bg-rose-500/20 text-rose-400 border border-rose-500/40">96% THREAT</span>
+                      {selectedScenarioId === 'cloned-cxo' && hasLoadedStream && (
+                        <span className="text-[8px] font-mono font-bold px-1.5 py-0.5 rounded bg-[#22D3EE]/15 text-[#22D3EE] border border-[#22D3EE]/30">Selected</span>
+                      )}
                     </div>
-                    <div className="text-[11px] text-slate-400 font-mono mt-0.5">₹10L extortion wire with HiFi-GAN vocoder artifact</div>
+                    <div className="flex items-center gap-2 mt-1 flex-wrap">
+                      <span className="text-[9px] font-mono font-bold px-1.5 py-0.2 rounded bg-rose-500/20 text-rose-400 border border-rose-500/40">96% THREAT</span>
+                      <span className="text-[11px] text-slate-400 font-mono truncate">₹10L extortion wire with HiFi-GAN vocoder artifact</span>
+                    </div>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-slate-400" />
+                  <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
                 </button>
 
                 {/* Preset 2: Hindi CXO Wire */}
@@ -586,14 +594,19 @@ export const VoiceAnalysisCoreView: React.FC<VoiceAnalysisCoreViewProps> = ({
                       : 'bg-[#040811] border-[rgba(148,163,184,0.15)] hover:border-slate-700'
                   }`}
                 >
-                  <div>
-                    <div className="flex items-center gap-2">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
                       <span className="text-xs font-bold text-white">Hindi CXO ₹15L Wire Impersonation</span>
-                      <span className="text-[9px] font-mono font-bold px-1.5 py-0.2 rounded bg-rose-500/20 text-rose-400 border border-rose-500/40">94% THREAT</span>
+                      {selectedScenarioId === 'emergency-pretext' && hasLoadedStream && (
+                        <span className="text-[8px] font-mono font-bold px-1.5 py-0.5 rounded bg-[#22D3EE]/15 text-[#22D3EE] border border-[#22D3EE]/30">Selected</span>
+                      )}
                     </div>
-                    <div className="text-[11px] text-slate-400 font-mono mt-0.5">Rajesh Mehta CFO clone with vocal tract length divergence</div>
+                    <div className="flex items-center gap-2 mt-1 flex-wrap">
+                      <span className="text-[9px] font-mono font-bold px-1.5 py-0.2 rounded bg-rose-500/20 text-rose-400 border border-rose-500/40">94% THREAT</span>
+                      <span className="text-[11px] text-slate-400 font-mono truncate">Rajesh Mehta CFO clone with vocal tract length divergence</span>
+                    </div>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-slate-400" />
+                  <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
                 </button>
 
                 {/* Preset 3: Genuine VIP Caller */}
@@ -606,14 +619,19 @@ export const VoiceAnalysisCoreView: React.FC<VoiceAnalysisCoreViewProps> = ({
                       : 'bg-[#040811] border-[rgba(148,163,184,0.15)] hover:border-slate-700'
                   }`}
                 >
-                  <div>
-                    <div className="flex items-center gap-2">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
                       <span className="text-xs font-bold text-white">Genuine VIP Operational Call</span>
-                      <span className="text-[9px] font-mono font-bold px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">4% SAFE</span>
+                      {selectedScenarioId === 'genuine-cxo' && hasLoadedStream && (
+                        <span className="text-[8px] font-mono font-bold px-1.5 py-0.5 rounded bg-[#22D3EE]/15 text-[#22D3EE] border border-[#22D3EE]/30">Selected</span>
+                      )}
                     </div>
-                    <div className="text-[11px] text-slate-400 font-mono mt-0.5">Priya Sharma VP with organic glottal micro-tremor (0.98 match)</div>
+                    <div className="flex items-center gap-2 mt-1 flex-wrap">
+                      <span className="text-[9px] font-mono font-bold px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">4% SAFE</span>
+                      <span className="text-[11px] text-slate-400 font-mono truncate">Priya Sharma VP with organic glottal micro-tremor (0.98 match)</span>
+                    </div>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-slate-400" />
+                  <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
                 </button>
               </div>
             )}
@@ -637,7 +655,7 @@ export const VoiceAnalysisCoreView: React.FC<VoiceAnalysisCoreViewProps> = ({
         </div>
 
         {/* RIGHT PANEL: Awaiting State OR Active Telemetry Results matching screenshot */}
-        <div className="lg:col-span-7 bg-[#070E1A] border border-[rgba(148,163,184,0.15)] rounded-2xl p-6 flex flex-col justify-center min-h-[420px] shadow-xl">
+        <div className="lg:col-span-7 bg-[#070E1A] border border-[rgba(148,163,184,0.15)] rounded-2xl p-6 flex flex-col justify-start min-h-[320px] shadow-xl overflow-visible">
           
           {/* STATE 1: AWAITING VOICE STREAM INPUT (EXACT SCREENSHOT FIDELITY) */}
           {!hasLoadedStream ? (
@@ -740,11 +758,11 @@ export const VoiceAnalysisCoreView: React.FC<VoiceAnalysisCoreViewProps> = ({
                     Biological Biomarkers:
                   </div>
 
-                  <div className="space-y-2 text-xs">
+                  <div className="space-y-3 text-xs">
                     <div>
-                      <div className="flex justify-between text-slate-300 mb-1">
-                        <span>Neural Vocoder Artifact:</span>
-                        <strong className="text-white">{currentScores.spectralArtifacts}%</strong>
+                      <div className="flex justify-between text-slate-300 mb-1 items-end">
+                        <span>Neural Vocoder Artifact</span>
+                        <strong className="text-white text-base font-mono tabular-nums">{currentScores.spectralArtifacts}%</strong>
                       </div>
                       <div className="w-full bg-[#091222] h-1.5 rounded-full overflow-hidden">
                         <div 
@@ -755,9 +773,9 @@ export const VoiceAnalysisCoreView: React.FC<VoiceAnalysisCoreViewProps> = ({
                     </div>
 
                     <div>
-                      <div className="flex justify-between text-slate-300 mb-1">
-                        <span>Glottal Micro-Tremor:</span>
-                        <strong className="text-white">{currentScores.prosodyNaturalness}%</strong>
+                      <div className="flex justify-between text-slate-300 mb-1 items-end">
+                        <span>Glottal Micro-Tremor</span>
+                        <strong className="text-white text-base font-mono tabular-nums">{currentScores.prosodyNaturalness}%</strong>
                       </div>
                       <div className="w-full bg-[#091222] h-1.5 rounded-full overflow-hidden">
                         <div 
@@ -768,9 +786,9 @@ export const VoiceAnalysisCoreView: React.FC<VoiceAnalysisCoreViewProps> = ({
                     </div>
 
                     <div>
-                      <div className="flex justify-between text-slate-300 mb-1">
-                        <span>Speaker Cosine Similarity:</span>
-                        <strong className="text-white">
+                      <div className="flex justify-between text-slate-300 mb-1 items-end">
+                        <span>Speaker Cosine Similarity</span>
+                        <strong className="text-white text-base font-mono tabular-nums">
                           {(speakerFingerprint?.cosineSimilarity ?? 0.88).toFixed(2)}
                         </strong>
                       </div>

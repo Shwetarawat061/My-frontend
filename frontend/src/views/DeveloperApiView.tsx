@@ -25,6 +25,9 @@ import { MagneticButton } from '../components/motion/MagneticButton';
 import { MotionCard } from '../components/motion/MotionCard';
 
 export const DeveloperApiView: React.FC = () => {
+  const STREAM_API_BASE = (import.meta.env.VITE_STREAM_API_BASE ?? 'http://localhost:8000').replace(/\/$/, '');
+  const STREAM_WS_URL = (import.meta.env.VITE_WS_URL ?? `${STREAM_API_BASE}/stream`).replace(/^http/, 'ws');
+
   const [selectedEndpointIndex, setSelectedEndpointIndex] = useState<number>(0);
   const [activeCodeTab, setActiveCodeTab] = useState<'curl' | 'nodejs' | 'python' | 'go'>('curl');
   const [isExecuting, setIsExecuting] = useState<boolean>(false);
@@ -42,7 +45,7 @@ export const DeveloperApiView: React.FC = () => {
     setIsExecuting(true);
     try {
       if (endpoint.path === '/v1/voice/analyze-stream') {
-        const res = await fetch('/api/analyze-stream', {
+        const res = await fetch(`${STREAM_API_BASE}/stream`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(endpoint.requestBody)
