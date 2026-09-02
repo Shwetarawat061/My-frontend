@@ -25,7 +25,8 @@ import {
   Activity,
   FileCheck2,
   LockKeyhole,
-  Volume2
+  Volume2,
+  FlaskConical
 } from 'lucide-react';
 import { NavigationTab, LanguageCoverage } from '../types';
 import { INDIAN_LANGUAGES_COVERAGE } from '../data/mockData';
@@ -138,16 +139,16 @@ export const LandingView: React.FC<LandingViewProps> = ({ onNavigate }) => {
   };
 
   return (
-    <div className="space-y-20 pb-16">
+    <div className="space-y-12 pb-8">
       
       {/* 1. HERO SECTION WITH DEFENSE RADAR */}
-      <section className="relative pt-6 sm:pt-12 overflow-hidden">
+      <section className="relative pt-2 sm:pt-4 overflow-hidden">
         
         {/* Ambient static blur glow */}
         <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-[700px] h-[400px] bg-gradient-to-tr from-[#22D3EE]/10 via-[#8B5CF6]/10 to-transparent blur-3xl pointer-events-none rounded-full" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
             {/* Left Column: Headlines & CTAs */}
             <div className="lg:col-span-7 space-y-6 text-left">
@@ -175,24 +176,32 @@ export const LandingView: React.FC<LandingViewProps> = ({ onNavigate }) => {
               </p>
 
               {/* Action Buttons with Magnetic Hover */}
-              <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
+              <div className="flex flex-wrap items-center gap-3 pt-2">
                 <MagneticButton
-                  id="hero-cta-launch"
+                  id="hero-cta-analyze"
                   onClick={() => onNavigate('analysis')}
-                  className="btn-cta-gradient w-full sm:w-auto px-6 py-3.5 rounded-lg text-white font-mono font-bold uppercase tracking-wider text-xs shadow-xl shadow-orange-500/20 flex items-center justify-center gap-2.5 transition-all cursor-pointer"
+                  className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-[#00D8F6] hover:bg-[#06B6D4] text-[#05070B] font-bold text-sm shadow-lg shadow-[#00D8F6]/25 flex items-center justify-center gap-2.5 transition-all cursor-pointer transform active:scale-95"
                 >
-                  <Radio className="w-4 h-4 animate-pulse" />
-                  <span>Launch Voice Analysis Core</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <Radio className="w-4 h-4 animate-pulse text-[#05070B]" />
+                  <span>Analyze Voice</span>
                 </MagneticButton>
                 
                 <MagneticButton
                   id="hero-cta-sim"
                   onClick={() => onNavigate('simulation')}
-                  className="w-full sm:w-auto px-6 py-3.5 rounded-lg bg-[#0B1120] hover:bg-[#131B2E] border border-[rgba(148,163,184,0.2)] text-slate-200 font-mono font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-2 transition-all group cursor-pointer"
+                  className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-[#070e17] hover:bg-[#0d1829] border border-[#00D8F6]/50 text-[#00D8F6] hover:text-white font-bold text-sm flex items-center justify-center gap-2.5 transition-all cursor-pointer shadow-sm transform active:scale-95 group"
                 >
-                  <Cpu className="w-4 h-4 text-[#8B5CF6] group-hover:rotate-12 transition-transform" />
+                  <FlaskConical className="w-4 h-4 text-[#00D8F6] group-hover:rotate-12 transition-transform" />
                   <span>Attack Simulation Lab</span>
+                </MagneticButton>
+
+                <MagneticButton
+                  id="hero-cta-how-it-works"
+                  onClick={() => onNavigate('how-it-works')}
+                  className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-gradient-to-r from-[#FF6B00] via-[#FA7E0A] to-[#FFA800] hover:from-[#EA580C] hover:to-[#F59E0B] text-white font-bold text-sm shadow-lg shadow-orange-500/30 flex items-center justify-center gap-2 transition-all cursor-pointer transform active:scale-95"
+                >
+                  <Sparkles className="w-4 h-4 text-white" />
+                  <span>How It Works (Demo)</span>
                 </MagneticButton>
               </div>
 
@@ -222,10 +231,10 @@ export const LandingView: React.FC<LandingViewProps> = ({ onNavigate }) => {
 
             {/* Right Column: Defense Radar Interactive Engine */}
             <div className="lg:col-span-5">
-              <div className="console-panel p-6 relative overflow-hidden">
+              <div className="console-panel p-5 relative overflow-hidden">
                 
                 {/* Header & Live Continuous Loop indicator */}
-                <div className="flex items-center justify-between border-b border-[rgba(148,163,184,0.12)] pb-3 mb-4">
+                <div className="flex items-center justify-between border-b border-[rgba(148,163,184,0.12)] pb-2 mb-3">
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-pulse"></span>
                     <span className="font-mono text-xs font-bold text-white tracking-wider">DEFENSE RADAR PIPELINE</span>
@@ -371,7 +380,7 @@ export const LandingView: React.FC<LandingViewProps> = ({ onNavigate }) => {
       </section>
 
       {/* 2. STATS BAR (TICKING REAL-TIME BENCHMARKS WITH SPRING COUNTERS) */}
-      <section className="border-y border-[rgba(148,163,184,0.12)] bg-[#0B1120] py-8">
+      <section className="border-y border-[rgba(148,163,184,0.12)] bg-[#0B1120] py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
             
@@ -413,7 +422,7 @@ export const LandingView: React.FC<LandingViewProps> = ({ onNavigate }) => {
 
       {/* 3. THREAT SCENARIO CARDS WITH HOVER LIFT & BORDER GLOW */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
+        <div className="text-center max-w-2xl mx-auto mb-8 space-y-3">
           <div className="text-xs font-semibold uppercase tracking-wider text-[#22D3EE] font-mono">
             Active Vector Taxonomy
           </div>
@@ -492,8 +501,8 @@ export const LandingView: React.FC<LandingViewProps> = ({ onNavigate }) => {
 
       {/* 4. MEASURABLE BIOMARKERS EXPLAINABILITY (BENTO-GRID LAYOUT) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="console-panel p-6 sm:p-8 space-y-8">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[rgba(148,163,184,0.12)] pb-6">
+        <div className="console-panel p-4 sm:p-6 space-y-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[rgba(148,163,184,0.12)] pb-4">
             <div>
               <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-[#22D3EE]/10 text-[#22D3EE] text-xs font-semibold mb-2 font-mono uppercase tracking-wider border border-[#22D3EE]/25">
                 <Activity className="w-3.5 h-3.5" />
@@ -755,9 +764,9 @@ export const LandingView: React.FC<LandingViewProps> = ({ onNavigate }) => {
 
       {/* 5. MULTILINGUAL INDIAN COVERAGE (BENTO-GRID LAYOUT FEATURING MARATHI SIH TESTBED) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="console-panel p-6 sm:p-8 space-y-8">
+        <div className="console-panel p-4 sm:p-6 space-y-6">
           
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[rgba(148,163,184,0.12)] pb-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[rgba(148,163,184,0.12)] pb-4">
             <div>
               <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-[#22D3EE]/10 text-[#22D3EE] text-xs font-semibold mb-2 font-mono uppercase tracking-wider border border-[#22D3EE]/25">
                 <Globe2 className="w-3.5 h-3.5" />
@@ -1095,7 +1104,7 @@ export const LandingView: React.FC<LandingViewProps> = ({ onNavigate }) => {
 
       {/* 6. PRIVACY & DPDP ACT 2023 COMPLIANCE (BENTO-GRID LAYOUT · COMPACT & TEXT-FORWARD) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="console-panel p-6 sm:p-8 space-y-6">
+        <div className="console-panel p-4 sm:p-6 space-y-6">
           <div className="flex items-center gap-3 border-b border-[rgba(148,163,184,0.12)] pb-4">
             <div className="p-2.5 rounded-lg bg-[#10B981]/15 text-[#10B981] border border-[#10B981]/30">
               <LockKeyhole className="w-6 h-6 text-[#10B981]" />
@@ -1248,18 +1257,24 @@ export const LandingView: React.FC<LandingViewProps> = ({ onNavigate }) => {
           <div className="flex flex-wrap items-center justify-center gap-4 relative z-10">
             <MagneticButton
               onClick={() => onNavigate('analysis')}
-              className="btn-cta-gradient px-8 py-4 rounded-lg text-white font-bold font-mono uppercase tracking-wider text-xs shadow-xl shadow-orange-500/25 flex items-center gap-2 transition-all cursor-pointer"
+              className="px-6 py-3.5 rounded-xl bg-[#00D8F6] hover:bg-[#06B6D4] text-[#05070B] font-bold text-sm shadow-lg shadow-[#00D8F6]/25 flex items-center gap-2 transition-all cursor-pointer"
             >
-              <Radio className="w-4 h-4 animate-pulse" />
-              <span>Start Live Analysis Demo</span>
-              <ArrowRight className="w-4 h-4" />
+              <Radio className="w-4 h-4 animate-pulse text-[#05070B]" />
+              <span>Analyze Voice</span>
             </MagneticButton>
             <MagneticButton
               onClick={() => onNavigate('simulation')}
-              className="px-6 py-4 rounded-lg bg-[#05070B] hover:bg-[#131B2E] border border-[rgba(148,163,184,0.2)] text-slate-200 font-bold font-mono uppercase tracking-wider text-xs flex items-center gap-2 transition-colors cursor-pointer"
+              className="px-6 py-3.5 rounded-xl bg-[#070e17] hover:bg-[#0d1829] border border-[#00D8F6]/50 text-[#00D8F6] font-bold text-sm flex items-center gap-2 transition-colors cursor-pointer"
             >
-              <Cpu className="w-4 h-4 text-[#8B5CF6]" />
-              <span>Open Attack Simulation Lab</span>
+              <FlaskConical className="w-4 h-4 text-[#00D8F6]" />
+              <span>Attack Simulation Lab</span>
+            </MagneticButton>
+            <MagneticButton
+              onClick={() => onNavigate('how-it-works')}
+              className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#FF6B00] to-[#FFA800] hover:from-[#EA580C] hover:to-[#F59E0B] text-white font-bold text-sm shadow-lg shadow-orange-500/25 flex items-center gap-2 transition-all cursor-pointer"
+            >
+              <Sparkles className="w-4 h-4 text-white" />
+              <span>How It Works (Demo)</span>
             </MagneticButton>
           </div>
         </div>

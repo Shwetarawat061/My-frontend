@@ -5,6 +5,7 @@ import { Navbar } from '../components/Navbar';
 import { Sidebar } from '../components/Sidebar';
 import { Footer } from '../components/Footer';
 import { CommandPalette } from '../components/CommandPalette';
+import { JudgeWalkthroughModal } from '../components/JudgeWalkthroughModal';
 import { NavigationTab } from '../types';
 
 export const WorkspaceLayout: React.FC = () => {
@@ -13,6 +14,7 @@ export const WorkspaceLayout: React.FC = () => {
   const shouldReduceMotion = useReducedMotion();
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState<boolean>(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState<boolean>(false);
+  const [isJudgeWalkthroughOpen, setIsJudgeWalkthroughOpen] = useState<boolean>(false);
 
   // Map pathname to NavigationTab for component compatibility
   const getCurrentTab = (): NavigationTab => {
@@ -91,6 +93,16 @@ export const WorkspaceLayout: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#05070B] text-slate-100 selection:bg-[#22D3EE]/30 selection:text-white font-sans antialiased">
+      {/* Guided SIH Judge Walkthrough Modal */}
+      <JudgeWalkthroughModal
+        isOpen={isJudgeWalkthroughOpen}
+        onClose={() => setIsJudgeWalkthroughOpen(false)}
+        onComplete={() => {
+          setIsJudgeWalkthroughOpen(false);
+          navigate('/app/voice-analysis');
+        }}
+      />
+
       {/* Quick Command Palette Modal */}
       <CommandPalette
         isOpen={isCommandPaletteOpen}
@@ -109,7 +121,7 @@ export const WorkspaceLayout: React.FC = () => {
         onOpenCommandPalette={() => setIsCommandPaletteOpen(true)}
         onToggleMobileSidebar={() => setIsMobileSidebarOpen(prev => !prev)}
         isMobileSidebarOpen={isMobileSidebarOpen}
-        onStartDemo={() => navigate('/app/dashboard')}
+        onStartDemo={() => setIsJudgeWalkthroughOpen(true)}
       />
 
       {/* Main Row Layout with Sidebar and Outlet */}
@@ -119,7 +131,7 @@ export const WorkspaceLayout: React.FC = () => {
           <Sidebar
             currentTab={currentTab}
             onTabChange={handleTabChange}
-            onStartDemo={() => navigate('/app/dashboard')}
+            onStartDemo={() => setIsJudgeWalkthroughOpen(true)}
           />
         </div>
 
@@ -148,7 +160,7 @@ export const WorkspaceLayout: React.FC = () => {
                     setIsMobileSidebarOpen(false);
                   }}
                   onStartDemo={() => {
-                    navigate('/app/dashboard');
+                    setIsJudgeWalkthroughOpen(true);
                     setIsMobileSidebarOpen(false);
                   }}
                 />
@@ -174,7 +186,7 @@ export const WorkspaceLayout: React.FC = () => {
         </main>
       </div>
 
-      {/* Global Footer */}
+      {/* Persistent Footer */}
       <Footer onTabChange={handleTabChange} />
     </div>
   );

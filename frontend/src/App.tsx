@@ -23,6 +23,8 @@ const ModelInsightsView = lazy(() => import('./views/ModelInsightsView').then(m 
 const AlertConfigView = lazy(() => import('./views/AlertConfigView').then(m => ({ default: m.AlertConfigView })));
 const AnalyticsView = lazy(() => import('./views/AnalyticsView').then(m => ({ default: m.AnalyticsView })));
 const PrivacyArchitectureView = lazy(() => import('./views/PrivacyArchitectureView').then(m => ({ default: m.PrivacyArchitectureView })));
+const HowItWorksView = lazy(() => import('./views/HowItWorksView').then(m => ({ default: m.HowItWorksView })));
+const SettingsPrivacyView = lazy(() => import('./views/SettingsPrivacyView').then(m => ({ default: m.SettingsPrivacyView })));
 const DeveloperApiView = lazy(() => import('./views/DeveloperApiView').then(m => ({ default: m.DeveloperApiView })));
 
 const RouteLoadingFallback = () => (
@@ -123,7 +125,7 @@ export default function App() {
             path="how-it-works"
             element={
               <Suspense fallback={<RouteLoadingFallback />}>
-                <PrivacyArchitectureView />
+                <HowItWorksView />
               </Suspense>
             }
           />
@@ -132,7 +134,7 @@ export default function App() {
             path="settings"
             element={
               <Suspense fallback={<RouteLoadingFallback />}>
-                <PrivacyArchitectureView />
+                <SettingsPrivacyView />
               </Suspense>
             }
           />

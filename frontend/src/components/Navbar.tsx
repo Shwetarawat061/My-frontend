@@ -6,10 +6,7 @@ import {
   Menu,
   X,
   ArrowLeft,
-  LayoutDashboard,
-  Radio,
-  FlaskConical,
-  BookOpen
+  Radio
 } from 'lucide-react';
 import { NavigationTab } from '../types';
 
@@ -76,33 +73,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
           </div>
 
-          {/* Center Quick Navigation Links (Shown on Landing Page) */}
-          {!isWorkspace && (
-            <nav className="hidden md:flex items-center gap-1">
-              <button
-                onClick={() => onTabChange('analysis')}
-                className="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white hover:bg-[#0B1120] transition-colors flex items-center gap-1.5 cursor-pointer"
-              >
-                <Radio className="w-3.5 h-3.5 text-[#22D3EE]" />
-                <span>Voice Analysis</span>
-              </button>
-              <button
-                onClick={() => onTabChange('simulation')}
-                className="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white hover:bg-[#0B1120] transition-colors flex items-center gap-1.5 cursor-pointer"
-              >
-                <FlaskConical className="w-3.5 h-3.5 text-[#C084FC]" />
-                <span>Attack Simulator</span>
-              </button>
-              <button
-                onClick={() => onTabChange('how-it-works')}
-                className="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white hover:bg-[#0B1120] transition-colors flex items-center gap-1.5 cursor-pointer"
-              >
-                <BookOpen className="w-3.5 h-3.5 text-slate-400" />
-                <span>How It Works</span>
-              </button>
-            </nav>
-          )}
-
           {/* Right Header Actions */}
           <div className="flex items-center gap-3">
             {/* Quick Command Palette Button (Cmd+K) */}
@@ -110,24 +80,23 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 id="header-btn-cmd-palette"
                 onClick={onOpenCommandPalette}
-                className="hidden lg:flex items-center gap-2 px-2 py-1.5 rounded-lg bg-[#0B1120]/80 hover:bg-[#131B2E] border border-[rgba(148,163,184,0.12)] text-slate-300 hover:text-white transition-all text-xs font-mono group cursor-pointer"
+                className="hidden lg:flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-[#0B1120] hover:bg-[#131B2E] border border-[rgba(148,163,184,0.15)] text-slate-300 hover:text-white transition-all text-xs font-mono group cursor-pointer"
                 title="Quick Access Command Palette (Press ⌘K or Ctrl+K)"
               >
-                <Search className="w-3.5 h-3.5 text-[#22D3EE]/80 group-hover:scale-110 transition-transform" />
-                <span className="text-[10px] text-slate-400">Search</span>
-                <kbd className="px-1.5 py-0.5 rounded bg-[#05070B] border border-[rgba(148,163,184,0.2)] text-[9px] font-bold text-slate-300">
+                <Search className="w-3.5 h-3.5 text-[#22D3EE] group-hover:scale-110 transition-transform" />
+                <span className="text-[11px] text-slate-400">Search</span>
+                <kbd className="px-1.5 py-0.5 rounded bg-[#05070B] border border-[rgba(148,163,184,0.2)] text-[10px] font-bold text-slate-300">
                   ⌘K
                 </kbd>
               </button>
             )}
 
             {/* Acoustic Defense Active Status Pill */}
-            <div className="hidden sm:flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#061B1C]/70 border border-[#10B981]/20 text-[10px] font-medium text-[#10B981]">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-60"></span>
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#10B981]"></span>
+            <div className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#041D1A] border border-[#10B981]/50 shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-[#10B981] inline-block"></span>
+              <span className="text-xs font-medium text-[#10B981]">
+                Acoustic Defense Active
               </span>
-              <span>Acoustic Defense Active</span>
             </div>
 
             {/* Context Switcher Button: Exit Workspace vs Open Workspace */}
@@ -135,21 +104,21 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 id="header-btn-exit-workspace"
                 onClick={() => onTabChange('landing')}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] font-medium bg-[#0B1120]/80 text-slate-300 hover:text-white hover:bg-[#131B2E] border border-[rgba(148,163,184,0.12)] transition-all cursor-pointer"
+                className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#071322] hover:bg-[#0c1f36] border border-[#22D3EE]/50 hover:border-[#22D3EE] text-white shadow-sm transition-all cursor-pointer"
                 title="Return to Public Landing Page"
               >
-                <ArrowLeft className="w-3.5 h-3.5 text-slate-400" />
+                <ArrowLeft className="w-3.5 h-3.5 text-[#22D3EE]" />
                 <span>Home View</span>
               </button>
             ) : (
               <button
                 id="header-btn-open-workspace"
                 onClick={() => onTabChange('dashboard')}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] font-medium bg-[#0B1120]/80 text-slate-300 hover:text-white hover:bg-[#131B2E] border border-[rgba(148,163,184,0.12)] transition-all cursor-pointer"
+                className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#071322] hover:bg-[#0c1f36] border border-[#22D3EE]/50 hover:border-[#22D3EE] text-white shadow-sm transition-all cursor-pointer"
                 title="Enter Cyber Defense Console"
               >
-                <LayoutDashboard className="w-3.5 h-3.5 text-[#22D3EE]" />
-                <span>Console</span>
+                <Radio className="w-3.5 h-3.5 text-[#22D3EE]" />
+                <span>Open Workspace</span>
               </button>
             )}
 
@@ -157,10 +126,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="header-btn-start-demo"
               onClick={onStartDemo ? onStartDemo : () => onTabChange('dashboard')}
-              className="flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-amber-500 via-orange-500 to-rose-600 hover:from-amber-400 hover:via-orange-400 hover:to-rose-500 shadow-lg shadow-orange-500/25 active:scale-95 transition-all cursor-pointer"
+              className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#FF6B00] via-[#FA7E0A] to-[#FF2D55] hover:from-[#EA580C] hover:to-[#E11D48] shadow-lg shadow-orange-500/35 active:scale-95 transition-all cursor-pointer"
             >
-              <Sparkles className="w-4 h-4 text-amber-100 animate-spin-slow" />
-              <span className="tracking-wide uppercase font-bold text-[11px] sm:text-xs">START SIH DEMO</span>
+              <Sparkles className="w-4 h-4 text-white" />
+              <span className="tracking-wider uppercase font-bold text-xs">START SIH DEMO</span>
             </button>
           </div>
         </div>
@@ -168,4 +137,3 @@ export const Navbar: React.FC<NavbarProps> = ({
     </header>
   );
 };
-

@@ -4,11 +4,13 @@ import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { LandingView } from './LandingView';
 import { CommandPalette } from '../components/CommandPalette';
+import { JudgeWalkthroughModal } from '../components/JudgeWalkthroughModal';
 import { NavigationTab } from '../types';
 
 export const LandingPage: React.FC = () => {
   const navigate = useNavigate();
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState<boolean>(false);
+  const [isJudgeWalkthroughOpen, setIsJudgeWalkthroughOpen] = useState<boolean>(false);
 
   // Global Keyboard Shortcuts (Cmd+K / Ctrl+K for Palette)
   useEffect(() => {
@@ -66,6 +68,16 @@ export const LandingPage: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#05070B] text-slate-100 selection:bg-[#22D3EE]/30 selection:text-white font-sans antialiased">
+      {/* Guided SIH Judge Walkthrough Modal */}
+      <JudgeWalkthroughModal
+        isOpen={isJudgeWalkthroughOpen}
+        onClose={() => setIsJudgeWalkthroughOpen(false)}
+        onComplete={() => {
+          setIsJudgeWalkthroughOpen(false);
+          navigate('/app/voice-analysis');
+        }}
+      />
+
       {/* Command Palette */}
       <CommandPalette
         isOpen={isCommandPaletteOpen}
@@ -82,7 +94,7 @@ export const LandingPage: React.FC = () => {
         isWorkspace={false}
         onTabChange={handleNavigate}
         onOpenCommandPalette={() => setIsCommandPaletteOpen(true)}
-        onStartDemo={() => navigate('/app/dashboard')}
+        onStartDemo={() => setIsJudgeWalkthroughOpen(true)}
       />
 
       {/* Full-width Main Landing Content */}
@@ -90,7 +102,7 @@ export const LandingPage: React.FC = () => {
         <LandingView onNavigate={handleNavigate} />
       </main>
 
-      {/* Global Footer */}
+      {/* Footer */}
       <Footer onTabChange={handleNavigate} />
     </div>
   );

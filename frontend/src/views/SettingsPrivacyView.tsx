@@ -16,7 +16,7 @@ import {
   Info
 } from 'lucide-react';
 
-export const PrivacyArchitectureView: React.FC = () => {
+export const SettingsPrivacyView: React.FC = () => {
   // Acoustic Detection Sensitivity Thresholds
   const [decisionBoundary, setDecisionBoundary] = useState<number>(() => {
     const saved = localStorage.getItem('verivox_decision_boundary');
